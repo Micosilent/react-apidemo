@@ -19,9 +19,9 @@ const GameDetail = () => {
           <StyledInfo>
             <h3>Platforms</h3>
             <StyledPlatforms>
-              {game.platforms.map((data) => {
-                <h3 key={data.platform.id}>{data.platform.name}</h3>;
-              })}
+              {game.platforms.map((data) => (
+                <h3 key={data.platform.id}>{data.platform.name}</h3>
+              ))}
             </StyledPlatforms>
           </StyledInfo>
         </StyledStats>
@@ -33,9 +33,9 @@ const GameDetail = () => {
           <p>{game.description_raw}</p>
         </StyledDescription>
         <div className="gallery">
-          {screenshots.results.map((data) => {
-            <img key={data.id} src={data.image} alt={data.image} />;
-          })}
+          {screenshots.results.map((data) => (
+            <img key={data.id} src={data.image} alt={data.image} />
+          ))}
         </div>
       </StyledDetail>
     </StyledCardShadow>
