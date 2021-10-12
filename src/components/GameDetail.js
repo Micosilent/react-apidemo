@@ -7,38 +7,42 @@ import { useSelector } from "react-redux";
 
 const GameDetail = () => {
   //Extract Data from redux
-  const { screenshots, game } = useSelector((state) => state.detail);
+  const { screenshots, game, isLoading } = useSelector((state) => state.detail);
   return (
-    <StyledCardShadow>
-      <StyledDetail>
-        <StyledStats>
-          <div className="rating">
-            <h3>{game.name}</h3>
-            <p>Rating: {game.rating}</p>
-          </div>
-          <StyledInfo>
-            <h3>Platforms</h3>
-            <StyledPlatforms>
-              {game.platforms?.map((data) => (
-                <h3 key={data.platform.id}>{data.platform.name}</h3>
+    <>
+      {!isLoading && (
+        <StyledCardShadow>
+          <StyledDetail>
+            <StyledStats>
+              <div className="rating">
+                <h3>{game.name}</h3>
+                <p>Rating: {game.rating}</p>
+              </div>
+              <StyledInfo>
+                <h3>Platforms</h3>
+                <StyledPlatforms>
+                  {game.platforms?.map((data) => (
+                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                  ))}
+                </StyledPlatforms>
+              </StyledInfo>
+            </StyledStats>
+            <StyledMedia>
+              {" "}
+              <img src={game.background_image} alt={game.background_image} />
+            </StyledMedia>
+            <StyledDescription>
+              <p>{game.description_raw}</p>
+            </StyledDescription>
+            <div className="gallery">
+              {screenshots.results?.map((data) => (
+                <img key={data.id} src={data.image} alt={data.image} />
               ))}
-            </StyledPlatforms>
-          </StyledInfo>
-        </StyledStats>
-        <StyledMedia>
-          {" "}
-          <img src={game.background_image} alt={game.background_image} />
-        </StyledMedia>
-        <StyledDescription>
-          <p>{game.description_raw}</p>
-        </StyledDescription>
-        <div className="gallery">
-          {screenshots.results?.map((data) => (
-            <img key={data.id} src={data.image} alt={data.image} />
-          ))}
-        </div>
-      </StyledDetail>
-    </StyledCardShadow>
+            </div>
+          </StyledDetail>
+        </StyledCardShadow>
+      )}
+    </>
   );
 };
 
