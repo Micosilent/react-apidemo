@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesActions";
+import { useLocation } from "react-router";
 //Components
 import Game from "../components/Game";
 import GameDetail from "../components/GameDetail";
@@ -9,6 +10,8 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const Home = () => {
+  //The game component links to the game ID in the url, in useLocation we fetch that url, and discard everything that is not the gameid
+  const pathID = useLocation().pathname.split("/")[2];
   //Fetch Games
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,7 +22,7 @@ const Home = () => {
 
   return (
     <StyledGameList>
-      <GameDetail />
+      {pathID && <GameDetail />}
       <h2>Upcoming Games</h2>
       <StyledGames>
         {upcoming.map((game) => (

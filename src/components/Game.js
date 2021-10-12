@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -14,9 +15,11 @@ const Game = ({ name, released, image, id }) => {
   };
   return (
     <StyledGame onClick={loadDetailHandler}>
-      <h3>{name}</h3>
-      <p>{released}</p>
-      <img src={image} alt={name} />
+      <Link to={`/game/${id}`}>
+        <h3>{name}</h3>
+        <p>{released}</p>
+        <img src={image} alt={name} />
+      </Link>
     </StyledGame>
   );
 };
