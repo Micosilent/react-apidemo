@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
+import { smallImage } from "../util";
 //Styles
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -39,14 +40,21 @@ const GameDetail = () => {
             </StyledStats>
             <StyledMedia>
               {" "}
-              <img src={game.background_image} alt={game.background_image} />
+              <img
+                src={smallImage(game.background_image, 1280)}
+                alt={game.background_image}
+              />
             </StyledMedia>
             <StyledDescription>
               <p>{game.description_raw}</p>
             </StyledDescription>
             <div className="gallery">
               {screenshots.results?.map((data) => (
-                <img key={data.id} src={data.image} alt={data.image} />
+                <img
+                  key={data.id}
+                  src={(smallImage(data.image), 1280)}
+                  alt={data.image}
+                />
               ))}
             </div>
           </StyledDetail>
