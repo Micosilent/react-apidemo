@@ -53,7 +53,7 @@ const GameDetail = ({ pathID }) => {
               {screenshots.results?.map((data) => (
                 <img
                   key={data.id}
-                  src={(smallImage(data.image), 1280)}
+                  src={smallImage(data.image, 1280)}
                   alt={data.image}
                 />
               ))}
