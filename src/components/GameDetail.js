@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
 
-const GameDetail = () => {
+const GameDetail = ({ pathID }) => {
   const history = useHistory();
   //Exit Detail
   const exitDetailHandler = (e) => {
@@ -23,10 +23,10 @@ const GameDetail = () => {
     <>
       {!isLoading && (
         <StyledCardShadow onClick={exitDetailHandler} className="shadow">
-          <StyledDetail>
+          <StyledDetail layoutId={pathID}>
             <StyledStats>
               <div className="rating">
-                <h3>{game.name}</h3>
+                <motion.h3 layoutId={`title ${pathID}`}>{game.name}</motion.h3>
                 <p>Rating: {game.rating}</p>
               </div>
               <StyledInfo>
@@ -40,7 +40,8 @@ const GameDetail = () => {
             </StyledStats>
             <StyledMedia>
               {" "}
-              <img
+              <motion.img
+                layoutId={`image ${pathID}`}
                 src={smallImage(game.background_image, 1280)}
                 alt={game.background_image}
               />
@@ -65,6 +66,7 @@ const GameDetail = () => {
 };
 
 const StyledCardShadow = styled(motion.div)`
+  z-index: 100;
   width: 100%;
   min-height: 100vh;
   overflow-y: scroll;
