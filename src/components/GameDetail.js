@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { smallImage } from "../util";
+import { smallImage, returnPlatformImages } from "../util";
 //Styles
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -32,9 +32,16 @@ const GameDetail = ({ pathID }) => {
               <StyledInfo>
                 <h3>Platforms</h3>
                 <StyledPlatforms>
-                  {game.platforms?.map((data) => (
-                    <h3 key={data.platform.id}>{data.platform.name}</h3>
-                  ))}
+                  {returnPlatformImages(game.platforms).map((data) => {
+                    console.log(data);
+                    return (
+                      <img
+                        src={data.image}
+                        alt={data.name}
+                        key={data.name}
+                      ></img>
+                    );
+                  })}
                 </StyledPlatforms>
               </StyledInfo>
             </StyledStats>
