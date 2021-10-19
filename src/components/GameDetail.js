@@ -33,12 +33,12 @@ const GameDetail = ({ pathID }) => {
                 <h3>Platforms</h3>
                 <StyledPlatforms>
                   {returnPlatformImages(game.platforms).map((data) => {
-                    console.log(data);
                     return (
                       <img
                         src={data.image}
                         alt={data.name}
                         key={data.name}
+                        title={data.name}
                       ></img>
                     );
                   })}
