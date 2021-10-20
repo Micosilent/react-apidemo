@@ -6,6 +6,9 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
+//Icons
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathID }) => {
   const history = useHistory();
@@ -16,6 +19,19 @@ const GameDetail = ({ pathID }) => {
       document.body.style.overflow = "auto";
       history.push("/");
     }
+  };
+  // Convert numerical rating to star icons
+  const starConverter = () => {
+    const stars = [];
+    const rating = Math.floor(game.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push(<img alt="full star" key={i} src={starFull}></img>);
+      } else {
+        stars.push(<img alt="empty star" key={i} src={starEmpty}></img>);
+      }
+    }
+    return stars;
   };
   //Extract Data from redux
   const { screenshots, game, isLoading } = useSelector((state) => state.detail);
@@ -28,6 +44,7 @@ const GameDetail = ({ pathID }) => {
               <div className="rating">
                 <motion.h3 layoutId={`title ${pathID}`}>{game.name}</motion.h3>
                 <p>Rating: {game.rating}</p>
+                {starConverter(game.rating)}
               </div>
               <StyledInfo>
                 <h3>Platforms</h3>
@@ -109,6 +126,11 @@ const StyledStats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  img {
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+  }
 `;
 
 const StyledInfo = styled(motion.div)`
