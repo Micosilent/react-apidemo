@@ -3,6 +3,7 @@ import {
   getPopularGamesURL,
   getUpcomingGamesURL,
   getNewGamesURL,
+  searchGameURL,
 } from "../api";
 
 export const loadGames = () => async (dispatch) => {
@@ -28,4 +29,13 @@ export const loadGames = () => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const fetchSearch = (game_name) => async (dispatch) => {
+  const searchGamesPromise = await axios.get(searchGameURL(game_name));
+
+  dispatch({
+    type: "FETCH_SEARCH",
+    payload: { searched: searchGamesPromise.data.results },
+  });
 };
