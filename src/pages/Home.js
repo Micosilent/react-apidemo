@@ -8,6 +8,7 @@ import GameDetail from "../components/GameDetail";
 //Styling and Animation
 import styled from "styled-components";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import { fadeIn } from "../animation";
 
 const Home = () => {
   //The game component links to the game ID in the url, in useLocation we fetch that url, and discard everything that is not the gameid
@@ -23,7 +24,7 @@ const Home = () => {
   );
 
   return (
-    <StyledGameList>
+    <StyledGameList variants={fadeIn} initial="hidden" animate="show">
       <AnimateSharedLayout type="crossfade">
         <AnimatePresence>
           {pathID && <GameDetail pathID={pathID} />}
